@@ -58,23 +58,28 @@
 </head>
 <body class="bg-space-50 text-space-900 dark:bg-space-950 dark:text-space-50 font-sans antialiased transition-colors duration-500 overflow-x-hidden relative selection:bg-stellar/30">
 
-    <!-- === PRELOADER === -->
-    <div id="preloader" class="fixed inset-0 z-[100] bg-space-950 flex flex-col items-center justify-center transition-opacity duration-700">
-        <div class="relative flex items-center justify-center w-24 h-24">
-            <svg width="96" height="96" viewBox="0 0 96 96" class="absolute -rotate-90">
-                <circle cx="48" cy="48" r="42" fill="none" stroke="rgba(139,92,246,0.15)" stroke-width="2"></circle>
-                <circle class="pre-ring" cx="48" cy="48" r="42" fill="none" stroke="url(#preGrad)" stroke-width="2" stroke-linecap="round"></circle>
-                <defs>
-                    <linearGradient id="preGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#8b5cf6"></stop>
-                        <stop offset="50%" stop-color="#3b82f6"></stop>
-                        <stop offset="100%" stop-color="#ec4899"></stop>
-                    </linearGradient>
-                </defs>
-            </svg>
-            <span class="text-xl font-black bg-gradient-to-r from-stellar via-cosmic to-nebula bg-clip-text text-transparent">ST</span>
+    <!-- === CINEMATIC BOOT PRELOADER === -->
+    <div id="preloader" class="fixed inset-0 z-[100] bg-space-950 flex flex-col items-center justify-center transition-all duration-700">
+        <div class="boot-wrap">
+            <div class="boot-ring-wrap">
+                <svg width="128" height="128" viewBox="0 0 128 128" class="boot-svg">
+                    <circle cx="64" cy="64" r="58" fill="none" stroke="rgba(139,92,246,0.12)" stroke-width="1.5"></circle>
+                    <circle id="boot-ring" cx="64" cy="64" r="58" fill="none" stroke="url(#preGrad)" stroke-width="2.5" stroke-linecap="round" transform="rotate(-90 64 64)"></circle>
+                    <defs>
+                        <linearGradient id="preGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#8b5cf6"></stop>
+                            <stop offset="50%" stop-color="#3b82f6"></stop>
+                            <stop offset="100%" stop-color="#ec4899"></stop>
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <div class="boot-pct"><span id="boot-pct">0</span><span class="boot-pct-sign">%</span></div>
+            </div>
+            <div class="boot-name">SHUBHAM&nbsp;TRIPATHI</div>
+            <div class="boot-sub">FULL STACK DEVELOPER · MISSION CONTROL</div>
+            <div class="boot-bar"><div class="boot-bar-fill" id="boot-bar-fill"></div></div>
+            <ul class="boot-log" id="boot-log"></ul>
         </div>
-        <div class="mt-6 text-xs font-mono tracking-widest text-stellar/80 uppercase pre-label">Booting Mission Control…</div>
     </div>
 
     <!-- === SCROLL PROGRESS BEAM === -->
@@ -83,10 +88,14 @@
     <!-- === CUSTOM CURSOR === -->
     <div id="custom-cursor"></div>
     <div id="custom-cursor-blur"></div>
+    <div id="cursor-label"></div>
 
-    <!-- === BACKGROUND CANVAS === -->
+    <!-- === BACKGROUND CANVAS (WebGL primary, 2D fallback) === -->
     <div class="galaxy-canvas-wrapper fixed inset-0 pointer-events-none z-0">
+        <canvas id="webgl-galaxy"></canvas>
         <canvas id="galaxy-engine"></canvas>
+        <div id="shooting-layer"></div>
+        <div class="vignette"></div>
     </div>
 
     <!-- === NAVIGATION === -->
@@ -104,6 +113,9 @@
             </div>
 
             <div class="flex items-center space-x-3">
+                <!-- Terminal trigger -->
+                <button id="terminal-trigger" aria-label="Open interactive terminal" class="hidden sm:inline-flex items-center justify-center w-9 h-9 rounded-xl border border-black/[0.06] dark:border-white/[0.06] bg-white/40 dark:bg-space-900/40 backdrop-blur-md hover:border-stellar/40 text-stellar font-mono text-xs font-bold transition-all duration-300 cursor-hover-trigger cursor-magnetic" data-cursor-label="TERMINAL">&gt;_</button>
+
                 <!-- Command palette trigger -->
                 <button id="cmdk-trigger" aria-label="Open command palette" class="hidden sm:inline-flex items-center space-x-2 pl-3 pr-2 py-2 rounded-xl border border-black/[0.06] dark:border-white/[0.06] bg-white/40 dark:bg-space-900/40 backdrop-blur-md hover:border-stellar/40 text-space-900/60 dark:text-space-50/60 text-xs transition-all duration-300 cursor-hover-trigger">
                     <i class="fa-solid fa-magnifying-glass text-[10px]"></i>
@@ -150,7 +162,7 @@
                     <span>System Online // Full Stack Engineering</span>
                 </div>
 
-                <h1 class="text-5xl sm:text-7xl font-black tracking-tighter mb-4 text-space-900 dark:text-white leading-none">
+                <h1 id="hero-name" class="kinetic-name text-5xl sm:text-7xl font-black tracking-tighter mb-4 text-space-900 dark:text-white leading-none" data-text="Shubham Tripathi">
                     Shubham Tripathi
                 </h1>
 
@@ -708,12 +720,52 @@
         </div>
     </div>
 
+    <!-- === COSMIC TERMINAL === -->
+    <div id="terminal" class="terminal-overlay hidden" role="dialog" aria-modal="true" aria-label="Interactive terminal">
+        <div id="terminal-backdrop" class="terminal-backdrop"></div>
+        <div class="terminal-window" role="document">
+            <div class="terminal-titlebar">
+                <div class="tb-dots" aria-hidden="true">
+                    <span class="tb-dot red"></span><span class="tb-dot amber"></span><span class="tb-dot green"></span>
+                </div>
+                <div class="tb-title"><i class="fa-solid fa-satellite-dish"></i>&nbsp;shubham@mission-control: ~</div>
+                <button id="terminal-close" class="tb-close cursor-hover-trigger" aria-label="Close terminal">&times;</button>
+            </div>
+            <div class="terminal-body" id="terminal-body"></div>
+            <div class="terminal-input-row" id="terminal-input-row">
+                <span class="term-prompt"><span class="tp-user">shubham</span><span class="tp-at">@</span><span class="tp-host">mission-control</span><span class="tp-sep">:</span><span class="tp-path">~</span><span class="tp-dollar">$</span></span>
+                <input id="terminal-input" class="terminal-input" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="Terminal command input">
+            </div>
+        </div>
+    </div>
+
+    <!-- === COCKPIT HUD === -->
+    <div id="hud" class="hud" aria-hidden="true">
+        <div class="hud-item hud-status"><span class="hud-dot"></span><span>SYSTEMS&nbsp;NOMINAL</span></div>
+        <div class="hud-item hud-clock"><i class="fa-regular fa-clock"></i><span id="hud-time">--:--:--</span></div>
+        <div class="hud-item hud-coords">POS&nbsp;<span id="hud-x">+0.00</span>&nbsp;<span id="hud-y">+0.00</span></div>
+        <div class="hud-item hud-fps"><span class="hud-dot hud-dot-cosmic"></span>WEBGL&nbsp;<span id="hud-engine">—</span></div>
+    </div>
+
+    <!-- === SECTION RAIL === -->
+    <nav id="section-rail" class="section-rail" aria-label="Section navigation"></nav>
+
     <!-- === TOAST NOTIFICATION === -->
     <div id="toast" class="fixed bottom-6 right-6 z-[100] px-5 py-3 rounded-xl bg-space-900 text-white border border-stellar/40 shadow-xl flex items-center space-x-3 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
         <i id="toast-icon" class="fa-solid fa-circle-check text-stellar"></i>
         <span id="toast-message" class="text-xs font-mono">Action confirmed</span>
     </div>
 
+    <!-- Three.js (CDN · UMD global) powers the WebGL galaxy; site falls back to a 2D canvas if this fails to load or WebGL is unavailable -->
+    <script>
+        window.__hasWebGL = (function () {
+            try {
+                var c = document.createElement('canvas');
+                return !!(window.WebGLRenderingContext && (c.getContext('webgl') || c.getContext('experimental-webgl')));
+            } catch (e) { return false; }
+        })();
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" onerror="window.__threeFailed=true"></script>
     <script src="script.js"></script>
 </body>
 </html>
