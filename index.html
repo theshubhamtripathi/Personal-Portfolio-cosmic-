@@ -3,7 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shubham Tripathi | Autonomous Architecture & Portfolio</title>
+    <title>Shubham Tripathi — Full Stack Developer | Java, Spring Boot & React</title>
+
+    <!-- === SEO & SOCIAL META === -->
+    <meta name="description" content="Shubham Tripathi — Full Stack Developer specializing in Java (Spring Boot), React, and distributed microservices. Builder of HireSphere: a 10-service, event-driven, AI-powered job portal. AWS Certified x2.">
+    <meta name="author" content="Shubham Tripathi">
+    <meta name="keywords" content="Shubham Tripathi, Full Stack Developer, Java, Spring Boot, React, Microservices, Apache Kafka, AWS Certified, Portfolio">
+    <meta name="theme-color" content="#020208">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Shubham Tripathi — Full Stack Developer | Java, Spring Boot & React">
+    <meta property="og:description" content="Distributed systems engineer & full-stack builder. 10 microservices, 6 Kafka topics, 8 AI features in production. AWS Certified x2.">
+    <meta property="og:image" content="profile.jpg">
+    <meta property="og:site_name" content="Shubham Tripathi · Mission Control">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Shubham Tripathi — Full Stack Developer">
+    <meta name="twitter:description" content="Java · Spring Boot · React · Microservices · AWS Certified x2">
+    <meta name="twitter:image" content="profile.jpg">
+
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
@@ -54,10 +74,10 @@
             </svg>
             <span class="text-xl font-black bg-gradient-to-r from-stellar via-cosmic to-nebula bg-clip-text text-transparent">ST</span>
         </div>
-        <div class="mt-6 text-xs font-mono tracking-widest text-stellar/80 uppercase pre-label">Initializing Systems...</div>
+        <div class="mt-6 text-xs font-mono tracking-widest text-stellar/80 uppercase pre-label">Booting Mission Control…</div>
     </div>
 
-    <!-- === SCROLL PROGRESS BAR === -->
+    <!-- === SCROLL PROGRESS BEAM === -->
     <div id="scroll-progress" class="fixed top-0 left-0 h-[3px] bg-gradient-to-r from-stellar via-cosmic to-nebula z-[60] w-0 transition-all duration-75"></div>
 
     <!-- === CUSTOM CURSOR === -->
@@ -83,18 +103,25 @@
                 <a href="#contact" class="nav-item hover:text-stellar transition-colors duration-300 cursor-hover-trigger">Contact</a>
             </div>
 
-            <div class="flex items-center space-x-4">
-                <button onclick="downloadResume()" class="hidden sm:inline-flex items-center space-x-2 px-4 py-2 rounded-xl border border-stellar/30 bg-stellar/10 hover:bg-stellar/20 text-stellar text-xs font-bold tracking-wider uppercase transition-all duration-300 cursor-hover-trigger cursor-magnetic">
+            <div class="flex items-center space-x-3">
+                <!-- Command palette trigger -->
+                <button id="cmdk-trigger" aria-label="Open command palette" class="hidden sm:inline-flex items-center space-x-2 pl-3 pr-2 py-2 rounded-xl border border-black/[0.06] dark:border-white/[0.06] bg-white/40 dark:bg-space-900/40 backdrop-blur-md hover:border-stellar/40 text-space-900/60 dark:text-space-50/60 text-xs transition-all duration-300 cursor-hover-trigger">
+                    <i class="fa-solid fa-magnifying-glass text-[10px]"></i>
+                    <span class="font-medium">Search</span>
+                    <kbd class="font-mono text-[10px] px-1.5 py-0.5 rounded-md border border-black/[0.08] dark:border-white/[0.1] bg-black/[0.03] dark:bg-white/[0.04]">⌘K</kbd>
+                </button>
+
+                <button onclick="downloadResume()" aria-label="Download résumé" class="hidden sm:inline-flex items-center space-x-2 px-4 py-2 rounded-xl border border-stellar/30 bg-stellar/10 hover:bg-stellar/20 text-stellar text-xs font-bold tracking-wider uppercase transition-all duration-300 cursor-hover-trigger cursor-magnetic">
                     <i class="fa-solid fa-download text-xs"></i>
                     <span>Resume</span>
                 </button>
 
-                <button id="theme-toggle" class="p-2.5 rounded-xl border border-black/[0.06] dark:border-white/[0.06] bg-white/40 dark:bg-space-900/40 backdrop-blur-md hover:border-stellar/40 dark:hover:border-stellar/40 transition-all duration-300 cursor-hover-trigger cursor-magnetic">
+                <button id="theme-toggle" aria-label="Toggle dark mode" class="p-2.5 rounded-xl border border-black/[0.06] dark:border-white/[0.06] bg-white/40 dark:bg-space-900/40 backdrop-blur-md hover:border-stellar/40 dark:hover:border-stellar/40 transition-all duration-300 cursor-hover-trigger cursor-magnetic">
                     <svg id="theme-toggle-dark-icon" class="hidden w-4 h-4 text-stellar" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
                     <svg id="theme-toggle-light-icon" class="hidden w-4 h-4 text-nebula" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464a1 1 0 101.414-1.414l-.707-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486a1 1 0 01-1.414 0l-.707-.707a1 1 0 011.414-1.414l.707.707a1 1 0 010 1.414zM4 11a1 1 0 100-2h1a1 1 0 100 2h-1z"></path></svg>
                 </button>
 
-                <button id="mobile-menu-btn" class="md:hidden p-2 text-space-900 dark:text-space-50 cursor-hover-trigger">
+                <button id="mobile-menu-btn" aria-label="Open menu" class="md:hidden p-2 text-space-900 dark:text-space-50 cursor-hover-trigger">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                 </button>
             </div>
@@ -120,7 +147,7 @@
             <div class="lg:col-span-7 text-center lg:text-left order-2 lg:order-1 flex flex-col justify-center items-center lg:items-start">
                 <div class="inline-flex mb-6 px-4 py-1.5 rounded-full border border-stellar/20 bg-stellar/5 text-stellar text-[10px] font-bold tracking-widest uppercase items-center space-x-2">
                     <span class="w-1.5 h-1.5 rounded-full bg-stellar animate-ping"></span>
-                    <span>System Online // Autonomous Architecture</span>
+                    <span>System Online // Full Stack Engineering</span>
                 </div>
 
                 <h1 class="text-5xl sm:text-7xl font-black tracking-tighter mb-4 text-space-900 dark:text-white leading-none">
@@ -133,11 +160,11 @@
 
                 <div class="mb-6 inline-flex items-center space-x-2 text-xs font-mono text-space-900/60 dark:text-slate-400 bg-black/[0.02] dark:bg-white/[0.02] px-3 py-1 rounded-lg border border-black/[0.04] dark:border-white/[0.04]">
                     <span class="text-stellar">&#10148;</span>
-                    <span id="status-ticker">Currently building iOS ecosystems</span>
+                    <span id="status-ticker">Architecting distributed systems</span>
                 </div>
 
                 <p class="text-sm sm:text-base text-space-900/70 dark:text-slate-300 max-w-xl mb-8 font-normal leading-relaxed text-center lg:text-left">
-                    Results-driven software developer with expertise in Swift, MERN stack, and Machine Learning, adept at designing scalable architectures, optimizing algorithms, and shipping production-grade software.
+                    Full Stack Developer skilled in <strong class="text-space-900 dark:text-white font-semibold">Java (Spring Boot)</strong> and <strong class="text-space-900 dark:text-white font-semibold">React</strong>, with hands-on experience in REST API design, database modeling, and authentication/authorization. Strong foundation in data structures, algorithms, and OOP — with a track record of shipping complete, production-ready features end-to-end.
                 </p>
 
                 <div class="flex flex-col sm:flex-row justify-center lg:justify-start items-center gap-4 w-full sm:w-auto">
@@ -158,14 +185,27 @@
                     </a>
                 </div>
 
-                <div class="mt-3 text-[10px] font-mono text-space-900/40 dark:text-slate-500">
-                    * Resume updated July 2026
+                <!-- Social constellation -->
+                <div class="mt-8 flex items-center justify-center lg:justify-start flex-wrap gap-3 text-sm">
+                    <a href="https://github.com/theshubhamtripathi" target="_blank" rel="noopener" aria-label="GitHub" class="social-orb cursor-hover-trigger cursor-magnetic"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/theshubhamtripathi/" target="_blank" rel="noopener" aria-label="LinkedIn" class="social-orb cursor-hover-trigger cursor-magnetic"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="https://leetcode.com/u/6st786/" target="_blank" rel="noopener" aria-label="LeetCode" class="social-orb cursor-hover-trigger cursor-magnetic"><i class="fa-solid fa-code"></i></a>
+                    <a href="https://www.codechef.com/users/theshubham786" target="_blank" rel="noopener" aria-label="CodeChef" class="social-orb cursor-hover-trigger cursor-magnetic"><i class="fa-solid fa-utensils"></i></a>
+                    <a href="https://codeforces.com/profile/_Enigmatic_" target="_blank" rel="noopener" aria-label="Codeforces" class="social-orb cursor-hover-trigger cursor-magnetic"><i class="fa-solid fa-chart-line"></i></a>
+                </div>
+
+                <div class="mt-4 text-[10px] font-mono text-space-900/40 dark:text-slate-500">
+                    * Résumé synced November 2026 — AWS Certified x2
                 </div>
             </div>
 
             <div class="lg:col-span-5 flex justify-center order-1 lg:order-2">
                 <div class="relative group cursor-hover-trigger parallax-layer" data-depth="0.05">
                     <div class="absolute -inset-4 bg-gradient-to-r from-stellar via-cosmic to-nebula rounded-[2.5rem] blur-2xl opacity-20 group-hover:opacity-40 transition duration-1000 parallax-layer" data-depth="0.1"></div>
+                    <!-- Orbiting badge -->
+                    <div class="orbit-ring hidden sm:block">
+                        <span class="orbit-dot"></span>
+                    </div>
                     <div class="relative w-64 h-64 sm:w-80 sm:h-80 rounded-[2.5rem] bg-white/10 dark:bg-space-900/10 backdrop-blur-md overflow-hidden border border-black/[0.08] dark:border-white/[0.08] p-3 shadow-2xl transition-transform duration-700 group-hover:scale-[1.02] tilt-card">
                         <div class="w-full h-full rounded-[1.8rem] overflow-hidden relative border border-black/[0.05] dark:border-white/[0.05]">
                             <img src="profile.jpg" alt="Shubham Tripathi" class="w-full h-full object-cover grayscale opacity-90 contrast-125 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700">
@@ -183,61 +223,115 @@
         </a>
     </section>
 
-    <!-- === ABOUT SECTION === -->
+    <!-- === ABOUT / MISSION CONTROL SECTION === -->
     <section id="about" class="py-32 relative z-10 border-t border-black/[0.04] dark:border-white/[0.04] reveal-on-scroll">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-20">
-                <h2 class="text-[10px] font-bold tracking-widest text-stellar uppercase mb-3">// POSITION SUMMARY</h2>
-                <h3 class="text-3xl sm:text-4xl font-black tracking-tight text-space-900 dark:text-white">Mission Briefing</h3>
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h2 class="text-[10px] font-bold tracking-widest text-stellar uppercase mb-3">// MISSION CONTROL</h2>
+                <h3 class="text-3xl sm:text-4xl font-black tracking-tight text-space-900 dark:text-white">Engineering Telemetry</h3>
+                <p class="mt-4 text-sm text-space-900/70 dark:text-slate-300 leading-relaxed">
+                    A snapshot of the signals that matter — academics, algorithms, shipped impact, and cloud credentials.
+                </p>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-                <div class="lg:col-span-7 space-y-6 text-sm sm:text-base font-normal leading-relaxed text-space-900/80 dark:text-slate-300">
-                    <p>
-                        I am a Computer Science & Engineering student at VIT Bhopal with a deep commitment to translating complex business requirements into robust, maintainable, and high-performance technical ecosystems.
+            <!-- BENTO GRID -->
+            <div class="bento-grid">
+                <!-- Narrative tile -->
+                <div class="bento-cell bento-wide glass-card tilt-card cursor-hover-trigger">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-stellar/10 flex items-center justify-center text-stellar"><i class="fa-solid fa-satellite-dish"></i></div>
+                        <span class="text-[10px] font-bold tracking-widest uppercase text-stellar">Mission Briefing</span>
+                    </div>
+                    <p class="text-sm sm:text-base leading-relaxed text-space-900/80 dark:text-slate-300">
+                        I design and ship <strong class="text-space-900 dark:text-white">production-ready backends</strong> — from REST APIs and database schemas to full microservice meshes secured with JWT and RBAC. My flagship, <strong class="text-stellar">HireSphere</strong>, runs <strong class="text-space-900 dark:text-white">10 Spring Boot services</strong> behind an API Gateway, wired together with Apache Kafka and augmented by 8 Gemini-powered AI features.
                     </p>
-                    <p>
-                        My dynamic toolkit segments smoothly across premium native mobile development, containerized web infrastructure, and automated analytical pipelines. This enables full-cycle capability spanning back-end resource design up to clean client views.
-                    </p>
-                    <div class="p-6 rounded-2xl border border-black/[0.04] dark:border-white/[0.04] bg-gradient-to-br from-white/10 to-transparent dark:from-space-900/10 dark:to-transparent backdrop-blur-md relative overflow-hidden group">
-                        <div class="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-stellar to-nebula"></div>
-                        <p class="italic text-space-900 dark:text-white font-medium">
-                            "Proven ability to translate complex business requirements into robust, maintainable solutions."
-                        </p>
+                    <div class="mt-5 inline-flex items-center space-x-2 text-xs font-mono text-space-900/60 dark:text-slate-400 border-l-2 border-nebula pl-3">
+                        <span class="italic">"Ship complete, production-ready features end-to-end."</span>
                     </div>
                 </div>
 
-                <div class="lg:col-span-5 grid grid-cols-1 gap-4">
-                    <div class="glass-card p-6 rounded-2xl border border-black/[0.06] dark:border-white/[0.06] bg-white/20 dark:bg-space-900/20 backdrop-blur-md shadow-glass-sm dark:shadow-glass-dark-sm flex items-center space-x-5 group cursor-hover-trigger tilt-card">
-                        <div class="w-12 h-12 rounded-xl bg-stellar/10 flex items-center justify-center text-stellar group-hover:scale-110 transition-transform duration-300">
-                            <i class="fa-solid fa-code text-lg"></i>
-                        </div>
-                        <div>
-                            <div class="text-2xl font-black text-space-900 dark:text-white group-hover:bg-gradient-to-r group-hover:from-stellar group-hover:to-nebula group-hover:bg-clip-text group-hover:text-transparent transition-all counter-stat" data-target="600">0</div>
-                            <div class="text-[11px] uppercase tracking-wider text-space-900/50 dark:text-slate-400 font-semibold">Algorithmic Solutions</div>
-                        </div>
-                    </div>
+                <!-- CGPA -->
+                <div class="bento-cell glass-card tilt-card cursor-hover-trigger accent-stellar">
+                    <div class="bento-icon text-stellar"><i class="fa-solid fa-graduation-cap"></i></div>
+                    <div class="bento-value counter-stat" data-target="9.32" data-decimals="2" data-suffix="">0</div>
+                    <div class="bento-label">CGPA · VIT Bhopal</div>
+                </div>
 
-                    <div class="glass-card p-6 rounded-2xl border border-black/[0.06] dark:border-white/[0.06] bg-white/20 dark:bg-space-900/20 backdrop-blur-md shadow-glass-sm dark:shadow-glass-dark-sm flex items-center space-x-5 group cursor-hover-trigger tilt-card">
-                        <div class="w-12 h-12 rounded-xl bg-cosmic/10 flex items-center justify-center text-cosmic group-hover:scale-110 transition-transform duration-300">
-                            <i class="fa-solid fa-terminal text-lg"></i>
-                        </div>
-                        <div>
-                            <div class="text-2xl font-black text-space-900 dark:text-white group-hover:bg-gradient-to-r group-hover:from-cosmic group-hover:to-stellar group-hover:bg-clip-text group-hover:text-transparent transition-all counter-stat" data-target="1360">0</div>
-                            <div class="text-[11px] uppercase tracking-wider text-space-900/50 dark:text-slate-400 font-semibold">Codeforces Pupil Rating</div>
-                        </div>
-                    </div>
+                <!-- DSA problems -->
+                <div class="bento-cell glass-card tilt-card cursor-hover-trigger accent-cosmic">
+                    <div class="bento-icon text-cosmic"><i class="fa-solid fa-brain"></i></div>
+                    <div class="bento-value counter-stat" data-target="700" data-suffix="+">0</div>
+                    <div class="bento-label">DSA Problems Solved</div>
+                </div>
 
-                    <div class="glass-card p-6 rounded-2xl border border-black/[0.06] dark:border-white/[0.06] bg-white/20 dark:bg-space-900/20 backdrop-blur-md shadow-glass-sm dark:shadow-glass-dark-sm flex items-center space-x-5 group cursor-hover-trigger tilt-card">
-                        <div class="w-12 h-12 rounded-xl bg-nebula/10 flex items-center justify-center text-nebula group-hover:scale-110 transition-transform duration-300">
-                            <i class="fa-solid fa-star text-lg"></i>
+                <!-- BioBERT precision -->
+                <div class="bento-cell glass-card tilt-card cursor-hover-trigger accent-nebula">
+                    <div class="bento-icon text-nebula"><i class="fa-solid fa-dna"></i></div>
+                    <div class="bento-value counter-stat" data-target="92" data-suffix="%">0</div>
+                    <div class="bento-label">BioBERT Precision</div>
+                </div>
+
+                <!-- Latency reduction -->
+                <div class="bento-cell glass-card tilt-card cursor-hover-trigger accent-flare">
+                    <div class="bento-icon text-flare"><i class="fa-solid fa-gauge-high"></i></div>
+                    <div class="bento-value counter-stat" data-target="35" data-suffix="%">0</div>
+                    <div class="bento-label">API Latency Cut</div>
+                </div>
+
+                <!-- AWS certified badges -->
+                <div class="bento-cell bento-wide glass-card tilt-card">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 rounded-xl bg-flare/10 flex items-center justify-center text-flare"><i class="fa-brands fa-aws"></i></div>
+                            <span class="text-[10px] font-bold tracking-widest uppercase text-flare">AWS Certified <span class="counter-stat" data-target="2" data-suffix="x">0</span></span>
                         </div>
-                        <div>
-                            <div class="text-2xl font-black text-space-900 dark:text-white group-hover:bg-gradient-to-r group-hover:from-nebula group-hover:to-cosmic group-hover:bg-clip-text group-hover:text-transparent transition-all counter-stat" data-target="1692">0</div>
-                            <div class="text-[11px] uppercase tracking-wider text-space-900/50 dark:text-slate-400 font-semibold">CodeChef 3-Star Status</div>
-                        </div>
+                        <span class="text-[9px] font-mono text-space-900/40 dark:text-slate-500 uppercase tracking-wider">Verified ↗</span>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <a href="https://www.linkedin.com/feed/update/urn:li:activity:7481527695387029504/" target="_blank" rel="noopener" class="holo-badge cursor-hover-trigger">
+                            <i class="fa-solid fa-cubes-stacked"></i>
+                            <div>
+                                <div class="holo-title">Solutions Architect</div>
+                                <div class="holo-sub">Associate · SAA-C03</div>
+                            </div>
+                        </a>
+                        <a href="https://www.linkedin.com/feed/update/urn:li:activity:7442744640216137728/" target="_blank" rel="noopener" class="holo-badge cursor-hover-trigger">
+                            <i class="fa-solid fa-robot"></i>
+                            <div>
+                                <div class="holo-title">AI Practitioner</div>
+                                <div class="holo-sub">Foundational · AIF-C01</div>
+                            </div>
+                        </a>
                     </div>
                 </div>
+
+                <!-- Competitive programming stat cards -->
+                <a href="https://codeforces.com/profile/_Enigmatic_" target="_blank" rel="noopener" class="bento-cell glass-card tilt-card cursor-hover-trigger cp-card accent-cosmic">
+                    <div class="flex items-center justify-between">
+                        <span class="cp-platform">Codeforces</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-[10px] opacity-40"></i>
+                    </div>
+                    <div class="cp-rating counter-stat" data-target="1360" data-suffix="">0</div>
+                    <div class="cp-tier text-cosmic">Pupil</div>
+                </a>
+
+                <a href="https://www.codechef.com/users/theshubham786" target="_blank" rel="noopener" class="bento-cell glass-card tilt-card cursor-hover-trigger cp-card accent-flare">
+                    <div class="flex items-center justify-between">
+                        <span class="cp-platform">CodeChef</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-[10px] opacity-40"></i>
+                    </div>
+                    <div class="cp-rating counter-stat" data-target="1692" data-suffix="">0</div>
+                    <div class="cp-tier text-flare">3★ Coder</div>
+                </a>
+
+                <a href="https://leetcode.com/u/6st786/" target="_blank" rel="noopener" class="bento-cell glass-card tilt-card cursor-hover-trigger cp-card accent-nebula">
+                    <div class="flex items-center justify-between">
+                        <span class="cp-platform">LeetCode</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-[10px] opacity-40"></i>
+                    </div>
+                    <div class="cp-rating counter-stat" data-target="1552" data-suffix="">0</div>
+                    <div class="cp-tier text-nebula">Contest Rating</div>
+                </a>
             </div>
         </div>
     </section>
@@ -253,61 +347,76 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="glass-card p-8 rounded-3xl border border-black/[0.06] dark:border-white/[0.06] bg-white/20 dark:bg-space-900/20 backdrop-blur-md shadow-glass-md dark:shadow-glass-dark-md group hover:border-stellar/30 transition-all duration-300 tilt-card">
                     <div class="flex items-center space-x-3 mb-6">
-                        <div class="text-stellar"><i class="fa-solid fa-code-branch text-lg"></i></div>
-                        <h4 class="text-sm font-bold tracking-wider uppercase text-space-900 dark:text-white">Languages & Core Architecture</h4>
+                        <div class="text-stellar"><i class="fa-solid fa-code text-lg"></i></div>
+                        <h4 class="text-sm font-bold tracking-wider uppercase text-space-900 dark:text-white">Languages</h4>
                     </div>
                     <div class="flex flex-wrap gap-2">
-                        <span class="skill-pill cursor-hover-trigger" data-level="Advanced" data-exp="3+ yrs">C</span>
-                        <span class="skill-pill cursor-hover-trigger" data-level="Advanced" data-exp="3+ yrs">C++</span>
-                        <span class="skill-pill cursor-hover-trigger" data-level="Expert" data-exp="4+ yrs">Java</span>
-                        <span class="skill-pill cursor-hover-trigger" data-level="Intermediate" data-exp="2+ yrs">Python</span>
-                        <span class="skill-pill cursor-hover-trigger" data-level="Advanced" data-exp="3+ yrs">JavaScript</span>
-                        <span class="skill-pill cursor-hover-trigger" data-level="Proficient" data-exp="4+ yrs">HTML/CSS</span>
+                        <span class="skill-pill cursor-hover-trigger" data-level="Primary" data-exp="Spring Boot">Java</span>
+                        <span class="skill-pill cursor-hover-trigger" data-level="Advanced" data-exp="DSA / CP">C++</span>
+                        <span class="skill-pill cursor-hover-trigger" data-level="Advanced" data-exp="Queries / Modeling">SQL</span>
                     </div>
                 </div>
 
                 <div class="glass-card p-8 rounded-3xl border border-black/[0.06] dark:border-white/[0.06] bg-white/20 dark:bg-space-900/20 backdrop-blur-md shadow-glass-md dark:shadow-glass-dark-md group hover:border-cosmic/30 transition-all duration-300 tilt-card">
                     <div class="flex items-center space-x-3 mb-6">
-                        <div class="text-cosmic"><i class="fa-solid fa-globe text-lg"></i></div>
-                        <h4 class="text-sm font-bold tracking-wider uppercase text-space-900 dark:text-white">Web Systems Ecosystem</h4>
+                        <div class="text-cosmic"><i class="fa-solid fa-server text-lg"></i></div>
+                        <h4 class="text-sm font-bold tracking-wider uppercase text-space-900 dark:text-white">Backend</h4>
                     </div>
                     <div class="flex flex-wrap gap-2">
-                        <span class="skill-pill cursor-hover-trigger" data-level="Advanced" data-exp="2+ yrs">React.js</span>
-                        <span class="skill-pill cursor-hover-trigger" data-level="Advanced" data-exp="2+ yrs">Node.js</span>
-                        <span class="skill-pill cursor-hover-trigger" data-level="Advanced" data-exp="2+ yrs">Express.js</span>
-                        <span class="skill-pill cursor-hover-trigger" data-level="Expert" data-exp="3+ yrs">Tailwind CSS</span>
-                        <span class="skill-pill cursor-hover-trigger" data-level="Intermediate" data-exp="1+ yr">FastAPI</span>
-                        <span class="skill-pill cursor-hover-trigger" data-level="Intermediate" data-exp="1+ yr">WebSockets</span>
-                        <span class="skill-pill cursor-hover-trigger" data-level="Intermediate" data-exp="1+ yr">Redux</span>
+                        <span class="skill-pill cursor-hover-trigger" data-level="Expert" data-exp="Microservices">Spring Boot</span>
+                        <span class="skill-pill cursor-hover-trigger" data-level="Advanced" data-exp="JWT / RBAC">Spring Security</span>
+                        <span class="skill-pill cursor-hover-trigger" data-level="Expert" data-exp="API Design">REST APIs</span>
+                        <span class="skill-pill cursor-hover-trigger" data-level="Advanced" data-exp="6 Topics">Apache Kafka</span>
                     </div>
                 </div>
 
                 <div class="glass-card p-8 rounded-3xl border border-black/[0.06] dark:border-white/[0.06] bg-white/20 dark:bg-space-900/20 backdrop-blur-md shadow-glass-md dark:shadow-glass-dark-md group hover:border-nebula/30 transition-all duration-300 tilt-card">
                     <div class="flex items-center space-x-3 mb-6">
-                        <div class="text-nebula"><i class="fa-solid fa-mobile-screen text-lg"></i></div>
-                        <h4 class="text-sm font-bold tracking-wider uppercase text-space-900 dark:text-white">Native iOS Infrastructure</h4>
+                        <div class="text-nebula"><i class="fa-solid fa-palette text-lg"></i></div>
+                        <h4 class="text-sm font-bold tracking-wider uppercase text-space-900 dark:text-white">Frontend</h4>
                     </div>
                     <div class="flex flex-wrap gap-2">
-                        <span class="skill-pill cursor-hover-trigger" data-level="Advanced" data-exp="2+ yrs">Swift</span>
-                        <span class="skill-pill cursor-hover-trigger" data-level="Advanced" data-exp="2+ yrs">SwiftUI</span>
-                        <span class="skill-pill cursor-hover-trigger" data-level="Intermediate" data-exp="1+ yr">CoreData</span>
-                        <span class="skill-pill cursor-hover-trigger" data-level="Advanced" data-exp="2+ yrs">MVVM</span>
+                        <span class="skill-pill cursor-hover-trigger" data-level="Advanced" data-exp="Hooks / SPA">React.js</span>
+                        <span class="skill-pill cursor-hover-trigger" data-level="Expert" data-exp="Utility-First">Tailwind CSS</span>
+                        <span class="skill-pill cursor-hover-trigger" data-level="Proficient" data-exp="Semantic">HTML/CSS</span>
+                    </div>
+                </div>
+
+                <div class="glass-card p-8 rounded-3xl border border-black/[0.06] dark:border-white/[0.06] bg-white/20 dark:bg-space-900/20 backdrop-blur-md shadow-glass-md dark:shadow-glass-dark-md group hover:border-cosmic/30 transition-all duration-300 tilt-card">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="text-cosmic"><i class="fa-solid fa-database text-lg"></i></div>
+                        <h4 class="text-sm font-bold tracking-wider uppercase text-space-900 dark:text-white">Databases</h4>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-pill cursor-hover-trigger" data-level="Advanced" data-exp="Relational">MySQL</span>
+                        <span class="skill-pill cursor-hover-trigger" data-level="Advanced" data-exp="DB-per-Service">PostgreSQL</span>
+                        <span class="skill-pill cursor-hover-trigger" data-level="Intermediate" data-exp="Caching / Rate-limit">Redis</span>
+                    </div>
+                </div>
+
+                <div class="glass-card p-8 rounded-3xl border border-black/[0.06] dark:border-white/[0.06] bg-white/20 dark:bg-space-900/20 backdrop-blur-md shadow-glass-md dark:shadow-glass-dark-md group hover:border-flare/30 transition-all duration-300 tilt-card">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="text-flare"><i class="fa-solid fa-gears text-lg"></i></div>
+                        <h4 class="text-sm font-bold tracking-wider uppercase text-space-900 dark:text-white">DevOps &amp; Tools</h4>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-pill cursor-hover-trigger" data-level="Intermediate" data-exp="Compose / CI">Docker</span>
+                        <span class="skill-pill cursor-hover-trigger" data-level="Advanced" data-exp="Version Control">Git</span>
+                        <span class="skill-pill cursor-hover-trigger" data-level="Advanced" data-exp="Actions / CI">GitHub</span>
+                        <span class="skill-pill cursor-hover-trigger" data-level="Certified" data-exp="SAA-C03 · AIF-C01">AWS</span>
                     </div>
                 </div>
 
                 <div class="glass-card p-8 rounded-3xl border border-black/[0.06] dark:border-white/[0.06] bg-white/20 dark:bg-space-900/20 backdrop-blur-md shadow-glass-md dark:shadow-glass-dark-md group hover:border-stellar/30 transition-all duration-300 tilt-card">
                     <div class="flex items-center space-x-3 mb-6">
-                        <div class="text-stellar"><i class="fa-solid fa-brain text-lg"></i></div>
-                        <h4 class="text-sm font-bold tracking-wider uppercase text-space-900 dark:text-white">Intelligence & Cloud Node</h4>
+                        <div class="text-stellar"><i class="fa-solid fa-diagram-project text-lg"></i></div>
+                        <h4 class="text-sm font-bold tracking-wider uppercase text-space-900 dark:text-white">Concepts</h4>
                     </div>
                     <div class="flex flex-wrap gap-2">
-                        <span class="skill-pill cursor-hover-trigger" data-level="Intermediate" data-exp="1+ yr">scikit-learn</span>
-                        <span class="skill-pill cursor-hover-trigger" data-level="Intermediate" data-exp="1+ yr">TensorFlow</span>
-                        <span class="skill-pill cursor-hover-trigger" data-level="Intermediate" data-exp="1+ yr">NLP</span>
-                        <span class="skill-pill cursor-hover-trigger" data-level="Certified" data-exp="AWS AIF-C01">AWS</span>
-                        <span class="skill-pill cursor-hover-trigger" data-level="Intermediate" data-exp="1+ yr">Docker</span>
-                        <span class="skill-pill cursor-hover-trigger" data-level="Advanced" data-exp="2+ yrs">MongoDB</span>
-                        <span class="skill-pill cursor-hover-trigger" data-level="Advanced" data-exp="2+ yrs">MySQL</span>
+                        <span class="skill-pill cursor-hover-trigger" data-level="Advanced" data-exp="10 services">Microservices</span>
+                        <span class="skill-pill cursor-hover-trigger" data-level="Advanced" data-exp="Auth / RBAC">JWT Auth</span>
+                        <span class="skill-pill cursor-hover-trigger" data-level="Intermediate" data-exp="Socket.io">WebSockets</span>
+                        <span class="skill-pill cursor-hover-trigger" data-level="Practiced" data-exp="Sprints">Agile / Scrum</span>
                     </div>
                 </div>
             </div>
@@ -315,15 +424,14 @@
             <div class="mt-6 glass-card p-8 rounded-3xl border border-black/[0.06] dark:border-white/[0.06] bg-white/20 dark:bg-space-900/20 backdrop-blur-md shadow-glass-md dark:shadow-glass-dark-md">
                 <div class="flex items-center space-x-3 mb-6">
                     <div class="text-nebula"><i class="fa-solid fa-book text-lg"></i></div>
-                    <h4 class="text-sm font-bold tracking-wider uppercase text-space-900 dark:text-white">Computer Science Core Fundamentals</h4>
+                    <h4 class="text-sm font-bold tracking-wider uppercase text-space-900 dark:text-white">Computer Science Fundamentals</h4>
                 </div>
                 <div class="flex flex-wrap gap-2">
-                    <span class="skill-pill-static">Data Structures & Algorithms</span>
-                    <span class="skill-pill-static">Operating Systems</span>
+                    <span class="skill-pill-static">Data Structures &amp; Algorithms</span>
+                    <span class="skill-pill-static">OOP</span>
                     <span class="skill-pill-static">DBMS</span>
+                    <span class="skill-pill-static">Operating Systems</span>
                     <span class="skill-pill-static">Computer Networks</span>
-                    <span class="skill-pill-static">Theory of Computation</span>
-                    <span class="skill-pill-static">Compiler Design</span>
                 </div>
             </div>
         </div>
@@ -331,162 +439,192 @@
 
     <!-- === PROJECTS SECTION === -->
     <section id="projects" class="py-32 relative z-10 border-t border-black/[0.04] dark:border-white/[0.04] reveal-on-scroll">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-20">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
                 <h2 class="text-[10px] font-bold tracking-widest text-stellar uppercase mb-3">// PRODUCTION BUILDS</h2>
                 <h3 class="text-3xl sm:text-4xl font-black tracking-tight text-space-900 dark:text-white">Star Systems Launched</h3>
+                <p class="mt-4 text-sm text-space-900/70 dark:text-slate-300 leading-relaxed">
+                    Click any card to open a full engineering case study. Filter by domain to explore the architecture.
+                </p>
             </div>
 
-            <div class="space-y-8">
-                <div class="glass-card p-8 sm:p-10 rounded-[2rem] border border-black/[0.06] dark:border-white/[0.06] bg-white/20 dark:bg-space-900/20 backdrop-blur-md shadow-glass-md dark:shadow-glass-dark-md relative overflow-hidden group hover:border-stellar/30 transition-all duration-500 tilt-card">
-                    <div class="absolute -top-24 -right-24 w-48 h-48 bg-stellar/5 rounded-full blur-3xl group-hover:bg-stellar/10 transition-all duration-700"></div>
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-4">
-                        <div class="flex items-center space-x-4">
-                            <div class="w-12 h-12 rounded-2xl bg-stellar/10 flex items-center justify-center text-stellar border border-stellar/20"><i class="fa-solid fa-layer-group text-lg"></i></div>
-                            <h4 class="text-xl sm:text-2xl font-black text-space-900 dark:text-white">Focus Flow</h4>
-                        </div>
-                        <div class="flex items-center space-x-3 self-start sm:self-auto">
-                            <span class="text-[9px] uppercase font-bold tracking-widest px-3 py-1 rounded-lg bg-stellar/10 text-stellar border border-stellar/20">iOS Ecosystem</span>
-                            <button onclick="openProjectModal('focus-flow')" class="px-3 py-1 rounded-lg bg-stellar/20 text-stellar hover:bg-stellar hover:text-white text-[10px] font-bold uppercase tracking-wider transition-all cursor-hover-trigger">View Details</button>
-                            <a href="#" class="w-8 h-8 rounded-xl bg-black/[0.04] dark:bg-white/[0.04] border border-black/[0.05] dark:border-white/[0.05] flex items-center justify-center text-space-900 dark:text-white hover:bg-gradient-to-r hover:from-stellar hover:to-nebula hover:text-white transition-all cursor-hover-trigger"><i class="fa-brands fa-github text-sm"></i></a>
-                        </div>
-                    </div>
-                    <p class="text-xs sm:text-sm text-space-900/80 dark:text-slate-300 font-normal mb-4 leading-relaxed">
-                        Built a full-stack iOS productivity app using SwiftUI and MVVM architecture, featuring a Pomodoro timer driven by Combine publishers, task management with CoreData CRUD, daily streak tracking with a GitHub-style heatmap, and a progress analytics dashboard built with Swift Charts.
-                    </p>
-                    <div class="flex flex-wrap gap-1.5">
-                        <span class="tag-span">Swift</span>
-                        <span class="tag-span">SwiftUI</span>
-                        <span class="tag-span">CoreData</span>
-                        <span class="tag-span">MVVM</span>
-                        <span class="tag-span">Combine</span>
-                        <span class="tag-span">Swift Charts</span>
-                    </div>
-                </div>
-
-                <div class="glass-card p-8 sm:p-10 rounded-[2rem] border border-black/[0.06] dark:border-white/[0.06] bg-white/20 dark:bg-space-900/20 backdrop-blur-md shadow-glass-md dark:shadow-glass-dark-md relative overflow-hidden group hover:border-nebula/30 transition-all duration-500 tilt-card">
-                    <div class="absolute -top-24 -right-24 w-48 h-48 bg-nebula/5 rounded-full blur-3xl group-hover:bg-nebula/10 transition-all duration-700"></div>
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-4">
-                        <div class="flex items-center space-x-4">
-                            <div class="w-12 h-12 rounded-2xl bg-nebula/10 flex items-center justify-center text-nebula border border-nebula/20"><i class="fa-solid fa-shield-halved text-lg"></i></div>
-                            <h4 class="text-xl sm:text-2xl font-black text-space-900 dark:text-white">HireGuard AI</h4>
-                        </div>
-                        <div class="flex items-center space-x-3 self-start sm:self-auto">
-                            <span class="text-[9px] uppercase font-bold tracking-widest px-3 py-1 rounded-lg bg-nebula/10 text-nebula border border-nebula/20">Machine Learning</span>
-                            <button onclick="openProjectModal('hire-guard')" class="px-3 py-1 rounded-lg bg-nebula/20 text-nebula hover:bg-nebula hover:text-white text-[10px] font-bold uppercase tracking-wider transition-all cursor-hover-trigger">View Details</button>
-                            <a href="#" class="w-8 h-8 rounded-xl bg-black/[0.04] dark:bg-white/[0.04] border border-black/[0.05] dark:border-white/[0.05] flex items-center justify-center text-space-900 dark:text-white hover:bg-gradient-to-r hover:from-stellar hover:to-nebula hover:text-white transition-all cursor-hover-trigger"><i class="fa-brands fa-github text-sm"></i></a>
-                        </div>
-                    </div>
-                    <p class="text-xs sm:text-sm text-space-900/80 dark:text-slate-300 font-normal mb-6 leading-relaxed">
-                        Built an NLP-powered fake job detection system that classifies fraudulent job postings using TF-IDF vectorization and ML classifiers, helping job seekers identify scam listings with high accuracy.
-                    </p>
-                    <div class="flex flex-wrap gap-1.5">
-                        <span class="tag-span">Python</span>
-                        <span class="tag-span">NLP</span>
-                        <span class="tag-span">scikit-learn</span>
-                        <span class="tag-span">Flask</span>
-                        <span class="tag-span">TF-IDF</span>
-                    </div>
-                </div>
+            <!-- FILTER TABS -->
+            <div id="project-filters" class="flex flex-wrap justify-center gap-2 sm:gap-3 mb-12">
+                <button class="filter-tab active cursor-hover-trigger" data-filter="all">All Systems</button>
+                <button class="filter-tab cursor-hover-trigger" data-filter="backend">Backend &amp; Microservices</button>
+                <button class="filter-tab cursor-hover-trigger" data-filter="fullstack">Full Stack</button>
+                <button class="filter-tab cursor-hover-trigger" data-filter="ai">AI / Systems</button>
             </div>
+
+            <!-- PROJECT GRID (populated by script.js) -->
+            <div id="projects-grid" class="grid grid-cols-1 lg:grid-cols-2 gap-6"></div>
         </div>
     </section>
 
     <!-- === PROJECT MODAL === -->
-    <div id="project-modal" class="fixed inset-0 z-[90] bg-black/80 backdrop-blur-md hidden items-center justify-center p-4">
-        <div class="modal-panel bg-space-900 border border-white/10 rounded-3xl max-w-2xl w-full p-8 relative max-h-[90vh] overflow-y-auto">
-            <button onclick="closeProjectModal()" class="absolute top-6 right-6 text-white/50 hover:text-white text-xl cursor-hover-trigger">&times;</button>
+    <div id="project-modal" class="fixed inset-0 z-[90] bg-black/80 backdrop-blur-md hidden items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal-panel bg-white dark:bg-space-900 border border-black/10 dark:border-white/10 rounded-3xl max-w-3xl w-full relative max-h-[90vh] overflow-y-auto" tabindex="-1">
+            <button onclick="closeProjectModal()" aria-label="Close dialog" class="modal-close-btn cursor-hover-trigger">&times;</button>
             <div id="modal-content"></div>
         </div>
     </div>
 
-    <!-- === EXPERIENCE SECTION === -->
+    <!-- === EXPERIENCE SECTION (ORBITAL TIMELINE) === -->
     <section id="experience" class="py-32 relative z-10 border-t border-black/[0.04] dark:border-white/[0.04] bg-black/[0.01] dark:bg-white/[0.01] reveal-on-scroll">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-2xl mx-auto mb-20">
-                <h2 class="text-[10px] font-bold tracking-widest text-stellar uppercase mb-3">// WORK TIMELINE</h2>
-                <h3 class="text-3xl sm:text-4xl font-black tracking-tight text-space-900 dark:text-white">Experience</h3>
+                <h2 class="text-[10px] font-bold tracking-widest text-stellar uppercase mb-3">// FLIGHT LOG</h2>
+                <h3 class="text-3xl sm:text-4xl font-black tracking-tight text-space-900 dark:text-white">Orbital Timeline</h3>
             </div>
 
-            <div class="relative timeline-container border-l-2 border-black/[0.05] dark:border-white/[0.05] ml-4 sm:ml-6 pl-8 sm:pl-10 space-y-12 max-w-4xl mx-auto">
-                <div class="relative group">
-                    <div class="absolute -left-[41px] sm:-left-[49px] top-2 bg-space-50 dark:bg-space-950 border-2 border-stellar w-4 h-4 rounded-full z-10 group-hover:scale-125 transition-transform duration-300 shadow-lg"></div>
-                    <div class="glass-card p-6 sm:p-8 rounded-3xl border border-black/[0.06] dark:border-white/[0.06] bg-white/20 dark:bg-space-900/20 backdrop-blur-md shadow-glass-md dark:shadow-glass-dark-md transition-all duration-300 hover:border-stellar/20 tilt-card">
-                        <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-2">
+            <div class="orbital-timeline max-w-4xl mx-auto">
+                <div class="orbital-line"><div class="orbital-line-fill" id="orbital-fill"></div></div>
+
+                <!-- Internship -->
+                <div class="orbital-node">
+                    <div class="orbital-marker"><span class="orbital-pulse"></span></div>
+                    <div class="glass-card tilt-card orbital-card cursor-hover-trigger">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-2">
                             <div>
-                                <h4 class="text-lg font-black text-space-900 dark:text-white">AI / ML Intern</h4>
+                                <h4 class="text-lg font-black text-space-900 dark:text-white">Software Development Intern</h4>
                                 <div class="text-stellar font-bold text-xs uppercase tracking-wider mt-1">amasQIS.ai</div>
                             </div>
                             <div class="text-[11px] font-mono text-space-900/60 dark:text-slate-400 border border-black/[0.04] dark:border-white/[0.04] px-3 py-1 rounded-lg bg-black/[0.02] dark:bg-white/[0.02] self-start sm:self-auto">
-                                June 2025 – Dec 2025 | Remote
+                                Jun 2025 – Dec 2025 · Remote
                             </div>
                         </div>
+                        <div class="flex flex-wrap gap-1.5 mb-5">
+                            <span class="tag-span">Python</span>
+                            <span class="tag-span">FastAPI</span>
+                            <span class="tag-span">Flask</span>
+                            <span class="tag-span">REST APIs</span>
+                            <span class="tag-span">Fine-Tuning</span>
+                            <span class="tag-span">LoRA</span>
+                            <span class="tag-span">BioBERT</span>
+                        </div>
                         <ul class="space-y-3 text-xs sm:text-sm font-normal text-space-900/80 dark:text-slate-300">
-                            <li class="flex items-start space-x-3"><span class="text-stellar mt-1 text-xs">▷</span><span>Completed a structured 2-month ML training program covering supervised/unsupervised learning algorithms, model evaluation, and real-world implementation in Python.</span></li>
-                            <li class="flex items-start space-x-3"><span class="text-stellar mt-1 text-xs">▷</span><span>Migrated legacy backend codebase to FastAPI, improving API response structure, scalability, and maintainability for production deployment.</span></li>
-                            <li class="flex items-start space-x-3"><span class="text-stellar mt-1 text-xs">▷</span><span>Assisted in fine-tuning an NLP-based ML model to auto-generate ICD-10 medical codes from patient symptoms, achieving 92% precision on a 15,000-record test set.</span></li>
-                            <li class="flex items-start space-x-3"><span class="text-stellar mt-1 text-xs">▷</span><span>Contributed to 2 production features across a 4-month project phase, reducing manual medical annotation time by 30% through intelligent workflow automation.</span></li>
+                            <li class="flex items-start space-x-3"><span class="text-stellar mt-1 text-xs">▷</span><span>Automated ICD-10 medical coding of unstructured clinical notes by fine-tuning a <strong class="text-space-900 dark:text-white">BioBERT</strong> model with <strong class="text-space-900 dark:text-white">LoRA</strong>, achieving <strong class="text-nebula">92% precision across 15,000+ validation records</strong>.</span></li>
+                            <li class="flex items-start space-x-3"><span class="text-stellar mt-1 text-xs">▷</span><span>Migrated slow synchronous Flask backends to asynchronous <strong class="text-space-900 dark:text-white">FastAPI</strong> REST endpoints and optimized Pydantic schemas and database queries, <strong class="text-nebula">cutting API latency by 35%</strong>.</span></li>
+                            <li class="flex items-start space-x-3"><span class="text-stellar mt-1 text-xs">▷</span><span>Worked in an Agile workflow with sprint planning and code reviews to maintain code quality and delivery timelines.</span></li>
                         </ul>
+                    </div>
+                </div>
+
+                <!-- Education -->
+                <div class="orbital-node">
+                    <div class="orbital-marker"><span class="orbital-pulse"></span></div>
+                    <div class="glass-card tilt-card orbital-card cursor-hover-trigger">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-2">
+                            <div>
+                                <h4 class="text-lg font-black text-space-900 dark:text-white">B.Tech, Computer Science &amp; Engineering (Core)</h4>
+                                <div class="text-cosmic font-bold text-xs uppercase tracking-wider mt-1">Vellore Institute of Technology · VIT Bhopal</div>
+                            </div>
+                            <div class="text-[11px] font-mono text-space-900/60 dark:text-slate-400 border border-black/[0.04] dark:border-white/[0.04] px-3 py-1 rounded-lg bg-black/[0.02] dark:bg-white/[0.02] self-start sm:self-auto">
+                                2023 – 2027 · Expected
+                            </div>
+                        </div>
+                        <p class="text-xs sm:text-sm text-space-900/80 dark:text-slate-300 leading-relaxed">
+                            Maintaining a <strong class="text-cosmic">CGPA of 9.32</strong> while building distributed systems and solving 700+ competitive-programming problems across Codeforces, CodeChef, and LeetCode.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Leadership -->
+                <div class="orbital-node">
+                    <div class="orbital-marker"><span class="orbital-pulse"></span></div>
+                    <div class="glass-card tilt-card orbital-card cursor-hover-trigger">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-2">
+                            <div>
+                                <h4 class="text-lg font-black text-space-900 dark:text-white">Technical Core Member</h4>
+                                <div class="text-nebula font-bold text-xs uppercase tracking-wider mt-1">Freelancing Club · VIT Bhopal</div>
+                            </div>
+                            <div class="text-[11px] font-mono text-space-900/60 dark:text-slate-400 border border-black/[0.04] dark:border-white/[0.04] px-3 py-1 rounded-lg bg-black/[0.02] dark:bg-white/[0.02] self-start sm:self-auto">
+                                Leadership
+                            </div>
+                        </div>
+                        <p class="text-xs sm:text-sm text-space-900/80 dark:text-slate-300 leading-relaxed">
+                            Supporting technical skill development and freelancing initiatives for the student community — mentoring peers and organizing hands-on build sessions.
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- === EDUCATION SECTION === -->
+    <!-- === EDUCATION & CREDENTIALS SECTION === -->
     <section id="education" class="py-32 relative z-10 border-t border-black/[0.04] dark:border-white/[0.04] reveal-on-scroll">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-2xl mx-auto mb-20">
-                <h2 class="text-[10px] font-bold tracking-widest text-stellar uppercase mb-3">// ACADEMIC TIMELINE</h2>
-                <h3 class="text-3xl sm:text-4xl font-black tracking-tight text-space-900 dark:text-white">Education</h3>
+                <h2 class="text-[10px] font-bold tracking-widest text-stellar uppercase mb-3">// CREDENTIALS</h2>
+                <h3 class="text-3xl sm:text-4xl font-black tracking-tight text-space-900 dark:text-white">Academics &amp; Certifications</h3>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="glass-card p-6 rounded-3xl border border-black/[0.06] dark:border-white/[0.06] bg-white/20 dark:bg-space-900/20 backdrop-blur-md shadow-glass-md dark:shadow-glass-dark-md flex flex-col justify-between group hover:border-stellar/20 transition-all tilt-card">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
+                <!-- Degree -->
+                <div class="glass-card p-8 rounded-3xl border border-black/[0.06] dark:border-white/[0.06] bg-white/20 dark:bg-space-900/20 backdrop-blur-md shadow-glass-md dark:shadow-glass-dark-md flex flex-col justify-between group hover:border-cosmic/20 transition-all tilt-card cursor-hover-trigger">
                     <div>
-                        <div class="text-[10px] font-mono text-stellar tracking-wider uppercase mb-3">2023 – 2027 (Expected)</div>
-                        <h4 class="font-bold text-sm mb-1 text-space-900 dark:text-white">B.Tech. in Computer Science and Engineering (Core)</h4>
-                        <p class="text-xs text-space-900/50 dark:text-slate-400 font-medium">VIT Bhopal</p>
+                        <div class="flex items-center justify-between mb-5">
+                            <div class="w-12 h-12 rounded-2xl bg-cosmic/10 flex items-center justify-center text-cosmic border border-cosmic/20"><i class="fa-solid fa-building-columns text-lg"></i></div>
+                            <div class="text-[10px] font-mono text-cosmic tracking-wider uppercase">2023 – 2027 (Expected)</div>
+                        </div>
+                        <h4 class="font-black text-lg mb-1 text-space-900 dark:text-white">B.Tech. Computer Science &amp; Engineering (Core)</h4>
+                        <p class="text-xs text-space-900/60 dark:text-slate-400 font-medium">Vellore Institute of Technology · VIT Bhopal</p>
                     </div>
-                    <div class="text-xs font-bold text-nebula tracking-wider mt-6 border-t border-black/[0.04] dark:border-white/[0.04] pt-4">CGPA: 9.29</div>
+                    <div class="flex items-center justify-between text-xs font-bold tracking-wider mt-6 border-t border-black/[0.04] dark:border-white/[0.04] pt-4">
+                        <span class="text-space-900/50 dark:text-slate-400 uppercase">Cumulative GPA</span>
+                        <span class="text-2xl font-black bg-gradient-to-r from-cosmic to-stellar bg-clip-text text-transparent">9.32</span>
+                    </div>
                 </div>
 
-                <div class="glass-card p-6 rounded-3xl border border-black/[0.06] dark:border-white/[0.06] bg-white/20 dark:bg-space-900/20 backdrop-blur-md shadow-glass-md dark:shadow-glass-dark-md flex flex-col justify-between group hover:border-stellar/20 transition-all tilt-card">
-                    <div>
-                        <div class="text-[10px] font-mono text-stellar tracking-wider uppercase mb-3">2022</div>
-                        <h4 class="font-bold text-sm mb-1 text-space-900 dark:text-white">Senior Secondary (Class XII) Science (PCM)</h4>
-                        <p class="text-xs text-space-900/50 dark:text-slate-400 font-medium">Jagat Taran Golden Jubilee School, Prayagraj</p>
+                <!-- Certifications -->
+                <div class="glass-card p-8 rounded-3xl border border-black/[0.06] dark:border-white/[0.06] bg-white/20 dark:bg-space-900/20 backdrop-blur-md shadow-glass-md dark:shadow-glass-dark-md tilt-card">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-12 h-12 rounded-2xl bg-flare/10 flex items-center justify-center text-flare border border-flare/20"><i class="fa-solid fa-certificate text-lg"></i></div>
+                        <h4 class="text-sm font-bold tracking-widest text-flare uppercase">Verified Certifications</h4>
                     </div>
-                    <div class="text-xs font-bold text-nebula tracking-wider mt-6 border-t border-black/[0.04] dark:border-white/[0.04] pt-4">Percentage: 88%</div>
-                </div>
-
-                <div class="glass-card p-6 rounded-3xl border border-black/[0.06] dark:border-white/[0.06] bg-white/20 dark:bg-space-900/20 backdrop-blur-md shadow-glass-md dark:shadow-glass-dark-md flex flex-col justify-between group hover:border-stellar/20 transition-all tilt-card">
-                    <div>
-                        <div class="text-[10px] font-mono text-stellar tracking-wider uppercase mb-3">2020</div>
-                        <h4 class="font-bold text-sm mb-1 text-space-900 dark:text-white">Secondary (Class X)</h4>
-                        <p class="text-xs text-space-900/50 dark:text-slate-400 font-medium">Jagat Taran Golden Jubilee School, Prayagraj</p>
+                    <div class="space-y-3">
+                        <a href="https://www.linkedin.com/feed/update/urn:li:activity:7481527695387029504/" target="_blank" rel="noopener" class="cert-row cursor-hover-trigger">
+                            <div class="flex items-center space-x-3">
+                                <i class="fa-brands fa-aws text-flare"></i>
+                                <div>
+                                    <div class="text-sm font-bold text-space-900 dark:text-white">AWS Solutions Architect – Associate</div>
+                                    <div class="text-[10px] font-mono text-space-900/50 dark:text-slate-400">SAA-C03</div>
+                                </div>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-xs opacity-40"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/feed/update/urn:li:activity:7442744640216137728/" target="_blank" rel="noopener" class="cert-row cursor-hover-trigger">
+                            <div class="flex items-center space-x-3">
+                                <i class="fa-brands fa-aws text-flare"></i>
+                                <div>
+                                    <div class="text-sm font-bold text-space-900 dark:text-white">AWS Certified AI Practitioner</div>
+                                    <div class="text-[10px] font-mono text-space-900/50 dark:text-slate-400">AIF-C01</div>
+                                </div>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-xs opacity-40"></i>
+                        </a>
                     </div>
-                    <div class="text-xs font-bold text-nebula tracking-wider mt-6 border-t border-black/[0.04] dark:border-white/[0.04] pt-4">Percentage: 91.6%</div>
                 </div>
             </div>
 
-            <div class="mt-8 glass-card p-8 rounded-3xl border border-black/[0.06] dark:border-white/[0.06] bg-white/20 dark:bg-space-900/20 backdrop-blur-md shadow-glass-md dark:shadow-glass-dark-md">
+            <!-- Achievements strip -->
+            <div class="mt-6 glass-card p-8 rounded-3xl border border-black/[0.06] dark:border-white/[0.06] bg-white/20 dark:bg-space-900/20 backdrop-blur-md shadow-glass-md dark:shadow-glass-dark-md">
                 <div class="flex items-center space-x-3 mb-6">
-                    <div class="text-stellar"><i class="fa-solid fa-certificate text-lg"></i></div>
-                    <h4 class="text-xs font-bold tracking-widest text-stellar uppercase">Systems Credentials // Certifications</h4>
+                    <div class="text-stellar"><i class="fa-solid fa-trophy text-lg"></i></div>
+                    <h4 class="text-sm font-bold tracking-widest text-stellar uppercase">Achievements &amp; Extracurricular</h4>
                 </div>
-                <div class="space-y-4 text-xs sm:text-sm text-space-900/80 dark:text-slate-300">
-                    <div class="flex items-start space-x-3">
-                        <span class="text-nebula">▷</span>
-                        <span><strong class="font-bold text-space-900 dark:text-white">Certified AWS AI Practitioner (AIF-C01):</strong> Validating foundational knowledge of Artificial Intelligence, Machine Learning, and Generative AI on AWS cloud infrastructure.</span>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs sm:text-sm">
+                    <div class="achievement-cell">
+                        <i class="fa-solid fa-code-compare text-cosmic"></i>
+                        <span><strong class="text-space-900 dark:text-white">700+ problems solved</strong> across Codeforces, CodeChef &amp; LeetCode.</span>
                     </div>
-                    <div class="flex items-start space-x-3">
-                        <span class="text-nebula">▷</span>
-                        <span><strong class="font-bold text-space-900 dark:text-white">NPTEL Elite Certificate:</strong> Introduction to Machine Learning by IIT Madras.</span>
+                    <div class="achievement-cell">
+                        <i class="fa-solid fa-ranking-star text-flare"></i>
+                        <span>Codeforces <strong class="text-space-900 dark:text-white">Pupil (1360)</strong> · CodeChef <strong class="text-space-900 dark:text-white">3★ (1692)</strong> · LeetCode <strong class="text-space-900 dark:text-white">1552</strong>.</span>
                     </div>
-                    <div class="flex items-start space-x-3">
-                        <span class="text-nebula">▷</span>
-                        <span><strong class="font-bold text-space-900 dark:text-white">Bits and Bytes of Computer Networking:</strong> Google verification covering TCP/IP, DNS, and networking protocols.</span>
+                    <div class="achievement-cell">
+                        <i class="fa-solid fa-users-gear text-nebula"></i>
+                        <span><strong class="text-space-900 dark:text-white">Technical Core Member</strong>, Freelancing Club, VIT Bhopal.</span>
                     </div>
                 </div>
             </div>
@@ -497,9 +635,9 @@
     <section id="contact" class="py-32 relative z-10 border-t border-black/[0.04] dark:border-white/[0.04] reveal-on-scroll">
         <div class="max-w-2xl mx-auto px-4 text-center">
             <h2 class="text-[10px] font-bold tracking-widest text-stellar uppercase mb-3">// LINK TRANSMITTER</h2>
-            <h3 class="text-3xl font-black mb-4 text-space-900 dark:text-white">Connect Frequency</h3>
+            <h3 class="text-3xl font-black mb-4 text-space-900 dark:text-white">Establish Connection</h3>
             <p class="text-xs sm:text-sm text-space-900/60 dark:text-slate-400 font-normal mb-8 leading-relaxed">
-                My channels are open to collaborative engineering architectures, production infrastructure deployments, or core algorithmic challenges.
+                Open to full-stack and backend engineering roles, internships, and collaborations on distributed systems. Let's build something that ships.
             </p>
 
             <form id="contact-form" class="space-y-4 text-left mb-8">
@@ -522,22 +660,24 @@
 
             <div class="space-y-4">
                 <div class="flex flex-col sm:flex-row justify-center items-center gap-4 text-xs font-mono">
-                    <button onclick="copyToClipboard('theshubhamtripathi06@gmail.com', 'Email copied!')" class="w-full sm:w-auto px-4 py-2.5 rounded-xl border border-black/[0.08] dark:border-white/[0.08] bg-white/20 dark:bg-space-900/20 hover:border-stellar/40 transition-all flex items-center justify-center space-x-2 cursor-hover-trigger">
+                    <button onclick="copyToClipboard('theshubhamtripathi06@gmail.com', 'Email copied to clipboard!')" class="w-full sm:w-auto px-4 py-2.5 rounded-xl border border-black/[0.08] dark:border-white/[0.08] bg-white/20 dark:bg-space-900/20 hover:border-stellar/40 transition-all flex items-center justify-center space-x-2 cursor-hover-trigger">
                         <i class="fa-solid fa-envelope text-stellar"></i>
                         <span>theshubhamtripathi06@gmail.com</span>
                         <i class="fa-regular fa-copy text-xs opacity-50 ml-1"></i>
                     </button>
 
-                    <button onclick="copyToClipboard('+918318512443', 'Phone copied!')" class="w-full sm:w-auto px-4 py-2.5 rounded-xl border border-black/[0.08] dark:border-white/[0.08] bg-white/20 dark:bg-space-900/20 hover:border-stellar/40 transition-all flex items-center justify-center space-x-2 cursor-hover-trigger">
+                    <button onclick="copyToClipboard('+918318512443', 'Phone number copied!')" class="w-full sm:w-auto px-4 py-2.5 rounded-xl border border-black/[0.08] dark:border-white/[0.08] bg-white/20 dark:bg-space-900/20 hover:border-stellar/40 transition-all flex items-center justify-center space-x-2 cursor-hover-trigger">
                         <i class="fa-solid fa-phone text-cosmic"></i>
                         <span>+91 8318512443</span>
                         <i class="fa-regular fa-copy text-xs opacity-50 ml-1"></i>
                     </button>
                 </div>
 
-                <div class="flex justify-center space-x-6 text-[10px] font-bold tracking-widest uppercase pt-4 text-space-900/60 dark:text-slate-400">
-                    <a href="https://linkedin.com/in/theshubhamtripathi" class="hover:text-stellar transition-colors flex items-center space-x-1.5 cursor-hover-trigger cursor-magnetic"><i class="fa-brands fa-linkedin text-sm"></i><span>LinkedIn</span></a>
-                    <a href="https://github.com/theshubhamtripathi" class="hover:text-nebula transition-colors flex items-center space-x-1.5 cursor-hover-trigger cursor-magnetic"><i class="fa-brands fa-github text-sm"></i><span>GitHub</span></a>
+                <div class="flex justify-center flex-wrap gap-5 text-[10px] font-bold tracking-widest uppercase pt-4 text-space-900/60 dark:text-slate-400">
+                    <a href="https://www.linkedin.com/in/theshubhamtripathi/" target="_blank" rel="noopener" class="hover:text-stellar transition-colors flex items-center space-x-1.5 cursor-hover-trigger cursor-magnetic"><i class="fa-brands fa-linkedin text-sm"></i><span>LinkedIn</span></a>
+                    <a href="https://github.com/theshubhamtripathi" target="_blank" rel="noopener" class="hover:text-nebula transition-colors flex items-center space-x-1.5 cursor-hover-trigger cursor-magnetic"><i class="fa-brands fa-github text-sm"></i><span>GitHub</span></a>
+                    <a href="https://leetcode.com/u/6st786/" target="_blank" rel="noopener" class="hover:text-flare transition-colors flex items-center space-x-1.5 cursor-hover-trigger cursor-magnetic"><i class="fa-solid fa-code text-sm"></i><span>LeetCode</span></a>
+                    <a href="https://codeforces.com/profile/_Enigmatic_" target="_blank" rel="noopener" class="hover:text-cosmic transition-colors flex items-center space-x-1.5 cursor-hover-trigger cursor-magnetic"><i class="fa-solid fa-chart-line text-sm"></i><span>Codeforces</span></a>
                 </div>
             </div>
         </div>
@@ -546,8 +686,27 @@
     <!-- === FOOTER === -->
     <footer class="py-12 text-center text-[10px] font-mono tracking-widest text-space-900/40 dark:text-slate-500 border-t border-black/[0.04] dark:border-white/[0.04] relative z-10 bg-white/10 dark:bg-space-950/10 backdrop-blur-sm">
         <p>© 2026 Shubham Tripathi // Node Operational</p>
-        <p class="mt-2 text-stellar/60 font-semibold uppercase tracking-wider text-[9px]">Technical Core Member | Freelancing Club at VIT Bhopal</p>
+        <p class="mt-2 text-stellar/60 font-semibold uppercase tracking-wider text-[9px]">Full Stack Developer · Java · Spring Boot · React · AWS Certified x2</p>
+        <p class="mt-3 text-space-900/30 dark:text-slate-600 text-[9px]">Press <kbd class="font-mono px-1 py-0.5 rounded border border-black/[0.08] dark:border-white/[0.1]">⌘K</kbd> to open the command palette</p>
     </footer>
+
+    <!-- === COMMAND PALETTE === -->
+    <div id="cmdk" class="fixed inset-0 z-[95] hidden items-start justify-center px-4 pt-[14vh]" role="dialog" aria-modal="true" aria-label="Command palette">
+        <div id="cmdk-backdrop" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+        <div id="cmdk-panel" class="relative w-full max-w-xl rounded-2xl border border-black/10 dark:border-white/10 bg-white/90 dark:bg-space-900/90 backdrop-blur-2xl shadow-2xl overflow-hidden">
+            <div class="flex items-center px-4 border-b border-black/[0.06] dark:border-white/[0.08]">
+                <i class="fa-solid fa-magnifying-glass text-stellar text-sm"></i>
+                <input id="cmdk-input" type="text" autocomplete="off" spellcheck="false" placeholder="Jump to a section, open a project, copy email…" class="w-full bg-transparent px-3 py-4 text-sm text-space-900 dark:text-white outline-none placeholder:text-space-900/40 dark:placeholder:text-slate-500">
+                <kbd class="hidden sm:block font-mono text-[10px] px-1.5 py-0.5 rounded-md border border-black/[0.08] dark:border-white/[0.1] text-space-900/50 dark:text-slate-400">ESC</kbd>
+            </div>
+            <ul id="cmdk-list" class="max-h-[46vh] overflow-y-auto py-2"></ul>
+            <div class="px-4 py-2.5 border-t border-black/[0.06] dark:border-white/[0.08] flex items-center justify-between text-[10px] font-mono text-space-900/40 dark:text-slate-500">
+                <span><kbd class="cmdk-hint">↑</kbd> <kbd class="cmdk-hint">↓</kbd> navigate</span>
+                <span><kbd class="cmdk-hint">↵</kbd> select</span>
+                <span>Mission Control</span>
+            </div>
+        </div>
+    </div>
 
     <!-- === TOAST NOTIFICATION === -->
     <div id="toast" class="fixed bottom-6 right-6 z-[100] px-5 py-3 rounded-xl bg-space-900 text-white border border-stellar/40 shadow-xl flex items-center space-x-3 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
