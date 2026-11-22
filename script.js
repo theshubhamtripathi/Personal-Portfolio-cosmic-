@@ -451,7 +451,15 @@ function initTilt(scope = document) {
 }
 initTilt();
 
-/* ============ SCROLL REVEAL + HEADING WORD REVEAL ============ */
+/* ============ SECTION HEADINGS + WORD REVEAL ============ */
+function enhanceHeadings() {
+    document.querySelectorAll('section').forEach(sec => {
+        const eyebrow = sec.querySelector('h2');
+        if (eyebrow && eyebrow.textContent.includes('//')) eyebrow.classList.add('section-eyebrow');
+        const h3 = sec.querySelector('h3');
+        if (h3) h3.classList.add('section-heading');
+    });
+}
 function setupWordReveal() {
     if (prefersReducedMotion) return;
     document.querySelectorAll('section.reveal-on-scroll h3').forEach(h => {
@@ -461,6 +469,7 @@ function setupWordReveal() {
         h.innerHTML = words.map(w => `<span class="rw"><span>${w}</span></span>`).join(' ');
     });
 }
+enhanceHeadings();
 setupWordReveal();
 
 const revealObserver = new IntersectionObserver((entries) => {
@@ -743,19 +752,25 @@ const projectOrder = ['hiresphere', 'url-shortener', 'focus-flow', 'hire-guard']
 
 function buildProjectCard(id) {
     const d = projectData[id], accent = ACCENT_VAR[d.accent];
+    const idx = String(projectOrder.indexOf(id) + 1).padStart(2, '0');
     const card = document.createElement('article');
     card.className = 'project-card tilt-card cursor-hover-trigger' + (d.flagship ? ' flagship' : '');
     card.dataset.id = id; card.dataset.cats = d.categories.join(' ');
     card.dataset.cursorLabel = 'OPEN ↗';
+    card.style.setProperty('--card-accent', accent);
     card.setAttribute('tabindex', '0'); card.setAttribute('role', 'button'); card.setAttribute('aria-label', `Open ${d.title} case study`);
     const metricPills = d.metrics.map(m => `<span class="metric-pill"><b>${m.v}</b> ${m.l}</span>`).join('');
     const techChips = d.tech.map(t => `<span class="tag-span">${t}</span>`).join('');
     card.innerHTML = `
+        <div class="proj-ring"></div>
         <div class="proj-glow" style="background:${accent}"></div>
         <div class="proj-glare"></div>
-        <div class="flex items-center justify-between mb-4">
-            <span class="proj-badge" style="color:${accent};background:${tint(accent, 12)}"><i class="fa-solid ${d.icon}"></i>${d.badge}</span>
-            <div class="w-10 h-10 rounded-2xl flex items-center justify-center text-base" style="color:${accent};background:${tint(accent, 12)}"><i class="fa-solid ${d.icon}"></i></div>
+        <div class="proj-scan"></div>
+        <div class="proj-corners"><i class="c-tl"></i><i class="c-tr"></i><i class="c-bl"></i><i class="c-br"></i></div>
+        <div class="proj-index">${idx}</div>
+        <div class="flex items-center gap-3 mb-5">
+            <div class="w-11 h-11 rounded-2xl flex items-center justify-center text-lg shrink-0" style="color:${accent};background:${tint(accent, 12)};border:1px solid ${tint(accent, 22)}"><i class="fa-solid ${d.icon}"></i></div>
+            <span class="proj-badge" style="color:${accent};background:${tint(accent, 12)}">${d.badge}</span>
         </div>
         <h4 class="proj-title">${d.title}</h4>
         <div class="proj-subtitle mt-1" style="color:${accent}">${d.subtitle}</div>
@@ -763,8 +778,8 @@ function buildProjectCard(id) {
         <div class="flex flex-wrap gap-2 mb-4">${metricPills}</div>
         <div class="flex flex-wrap gap-1.5 mb-5">${techChips}</div>
         <div class="mt-auto flex items-center justify-between pt-1">
-            <span class="proj-cta">Explore Architecture <i class="fa-solid fa-arrow-right-long"></i></span>
-            <a href="${d.github}" target="_blank" rel="noopener" class="proj-ghlink cursor-hover-trigger" aria-label="${d.title} on GitHub" data-ghlink><i class="fa-brands fa-github"></i></a>
+            <span class="proj-cta">Explore Case Study <i class="fa-solid fa-arrow-right-long"></i></span>
+            <a href="${d.github}" target="_blank" rel="noopener" class="proj-ghlink cursor-hover-trigger" aria-label="${d.title} on GitHub" data-ghlink data-cursor-label="GITHUB ↗"><i class="fa-brands fa-github"></i></a>
         </div>`;
     card.addEventListener('click', (e) => { if (e.target.closest('[data-ghlink]')) return; openProjectModal(id); });
     card.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openProjectModal(id); } });
@@ -850,7 +865,7 @@ function openProjectModal(id) {
             <div class="modal-section"><div class="modal-section-title">Impact Metrics</div><div class="impact-grid">${impact}</div></div>
             <div class="modal-section"><div class="modal-section-title">Full Tech Stack</div><div class="flex flex-wrap gap-1.5">${tech}</div></div>
             <div class="modal-actions">
-                <a href="${d.github}" target="_blank" rel="noopener" class="modal-btn ${d.live ? 'ghost' : 'primary'}"><i class="fa-brands fa-github"></i>View on GitHub</a>
+                <a href="${d.github}" target="_blank" rel="noopener" class="modal-btn ${d.live ? 'ghost' : 'primary'}"><i class="fa-brands fa-github"></i>View Code on GitHub <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:.75em"></i></a>
                 ${liveBtn}
             </div>
         </div>`;

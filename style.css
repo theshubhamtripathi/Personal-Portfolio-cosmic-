@@ -537,7 +537,7 @@ html.dark .project-card { border: 1px solid rgba(255,255,255,0.06); background: 
     opacity: 0; transition: opacity 0.4s ease; pointer-events: none;
 }
 .project-card:hover::after { opacity: 1; }
-.project-card > *:not(.proj-glow) { position: relative; z-index: 1; }
+.project-card > *:not(.proj-glow):not(.proj-ring):not(.proj-glare):not(.proj-scan):not(.proj-corners):not(.proj-index) { position: relative; z-index: 2; }
 .project-card.flagship { border-color: rgba(139,92,246,0.3); }
 .project-card.flagship::before {
     content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1px;
@@ -972,6 +972,160 @@ html:not(.dark) .terminal-window { border-color: rgba(139,92,246,0.35); backgrou
 .tp-sep { color: #64748b; } .tp-path { color: var(--flare); } .tp-dollar { color: #cbd5e1; margin: 0 0.3rem 0 0.1rem; }
 .terminal-input { flex: 1; background: transparent; border: none; outline: none; color: #fff; font-family: 'Space Grotesk', monospace; font-size: 13px; caret-color: var(--stellar); }
 .terminal-input::placeholder { color: #475569; }
+
+/* ============================================================
+   ===============  V4  TYPE + CARD POLISH  ===================
+   ============================================================ */
+@property --ring-angle { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
+
+/* ---------- SECTION EYEBROWS ---------- */
+.section-eyebrow { position: relative; display: inline-block; }
+.section-eyebrow::before, .section-eyebrow::after {
+    content: ""; position: absolute; top: 52%; width: 26px; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--stellar));
+}
+.section-eyebrow::before { right: 104%; transform: scaleX(-1); }
+.section-eyebrow::after { left: 104%; }
+
+/* ---------- GRADIENT SECTION HEADINGS ---------- */
+.section-heading { position: relative; }
+.section-heading .rw > span {
+    background: linear-gradient(115deg, #ffffff 0%, #c4b5fd 30%, var(--stellar) 55%, var(--cosmic) 78%, var(--nebula) 100%);
+    background-size: 220% auto;
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    filter: drop-shadow(0 3px 26px rgba(139, 92, 246, 0.28));
+    animation: heading-sheen 9s ease-in-out infinite;
+}
+html:not(.dark) .section-heading .rw > span {
+    background: linear-gradient(115deg, #0b0a1a 0%, #4c1d95 35%, var(--stellar) 65%, var(--cosmic) 100%);
+    background-size: 220% auto;
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    filter: none;
+}
+@keyframes heading-sheen { 0%, 100% { background-position: 0% center; } 50% { background-position: 120% center; } }
+/* non-split fallback (reduced motion) keeps readable solid color — nothing to do */
+
+/* keyword emphasis in body copy */
+section p strong, .modal-body strong, .orbital-card strong, .bento-cell strong {
+    color: var(--stellar); font-weight: 700;
+    background: linear-gradient(transparent 68%, rgba(139, 92, 246, 0.16) 0);
+}
+html.dark section p strong, html.dark .modal-body strong, html.dark .orbital-card strong, html.dark .bento-cell strong { color: #fff; }
+
+/* ============================================================
+   PROJECT CARDS — cosmic HUD treatment
+   ============================================================ */
+.project-card {
+    padding: 1.9rem;
+    background-image: radial-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+html.dark .project-card { background-image: radial-gradient(rgba(255, 255, 255, 0.022) 1px, transparent 1px); background-size: 20px 20px; }
+.project-card { transition: transform 0.45s cubic-bezier(0.16,1,0.3,1), box-shadow 0.45s, border-color 0.45s; }
+.project-card:hover { box-shadow: 0 30px 60px -22px color-mix(in srgb, var(--card-accent, var(--stellar)) 55%, transparent); }
+
+/* rotating conic border ring */
+.proj-ring {
+    position: absolute; inset: 0; border-radius: inherit; padding: 1.4px; z-index: 0; pointer-events: none;
+    background: conic-gradient(from var(--ring-angle), transparent 0%, var(--card-accent, var(--stellar)) 18%, transparent 36%, transparent 64%, var(--card-accent, var(--stellar)) 82%, transparent 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor; mask-composite: exclude;
+    opacity: 0; transition: opacity 0.4s ease;
+    animation: ring-spin 6s linear infinite;
+}
+@keyframes ring-spin { to { --ring-angle: 360deg; } }
+.project-card:hover .proj-ring { opacity: 0.9; }
+.project-card.flagship .proj-ring { opacity: 0.65; }
+.project-card.flagship::before { display: none; } /* replaced by animated ring */
+
+/* targeting-reticle corner brackets */
+.proj-corners i {
+    position: absolute; width: 13px; height: 13px; z-index: 1; pointer-events: none;
+    opacity: 0.35; transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+    border-color: var(--card-accent, var(--stellar));
+}
+.proj-corners .c-tl { top: 12px; left: 12px; border-top: 1.5px solid; border-left: 1.5px solid; border-top-left-radius: 5px; }
+.proj-corners .c-tr { top: 12px; right: 12px; border-top: 1.5px solid; border-right: 1.5px solid; border-top-right-radius: 5px; }
+.proj-corners .c-bl { bottom: 12px; left: 12px; border-bottom: 1.5px solid; border-left: 1.5px solid; border-bottom-left-radius: 5px; }
+.proj-corners .c-br { bottom: 12px; right: 12px; border-bottom: 1.5px solid; border-right: 1.5px solid; border-bottom-right-radius: 5px; }
+.project-card:hover .proj-corners i { opacity: 1; width: 20px; height: 20px; }
+
+/* index numeral */
+.proj-index {
+    position: absolute; top: 14px; right: 18px; z-index: 1; pointer-events: none;
+    font-family: 'Space Grotesk', monospace; font-weight: 700; font-size: 2.4rem; line-height: 1;
+    letter-spacing: -0.04em; color: transparent;
+    -webkit-text-stroke: 1px color-mix(in srgb, var(--card-accent, var(--stellar)) 25%, transparent);
+    transition: all 0.4s ease;
+}
+.project-card:hover .proj-index { -webkit-text-stroke-color: color-mix(in srgb, var(--card-accent, var(--stellar)) 55%, transparent); transform: translateY(-2px); }
+
+/* hover scan sweep */
+.proj-scan {
+    position: absolute; left: 0; right: 0; height: 45%; top: -45%; z-index: 1; pointer-events: none; opacity: 0;
+    background: linear-gradient(to bottom, transparent, color-mix(in srgb, var(--card-accent, var(--stellar)) 12%, transparent), transparent);
+}
+.project-card:hover .proj-scan { animation: proj-scan 1.6s cubic-bezier(0.4,0,0.2,1); }
+@keyframes proj-scan { 0% { top: -45%; opacity: 0; } 25% { opacity: 1; } 100% { top: 100%; opacity: 0; } }
+
+/* refined badge / title / metrics / chips */
+.proj-badge { letter-spacing: 0.12em; padding: 0.35rem 0.8rem; }
+.proj-title { font-size: 1.65rem; }
+.project-card:hover .proj-title { color: var(--card-accent, var(--stellar)); }
+.metric-pill { padding: 0.4rem 0.8rem; }
+.metric-pill b { background: linear-gradient(120deg, var(--card-accent, var(--stellar)), var(--nebula)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.metric-pill:hover { border-color: color-mix(in srgb, var(--card-accent, var(--stellar)) 45%, transparent); box-shadow: 0 6px 16px -6px color-mix(in srgb, var(--card-accent, var(--stellar)) 50%, transparent); }
+.project-card .tag-span { transition: all 0.25s ease; }
+.project-card:hover .tag-span { border-color: color-mix(in srgb, var(--card-accent, var(--stellar)) 25%, transparent); }
+.proj-cta {
+    font-size: 11.5px; padding: 0.55rem 0.95rem; border-radius: 0.7rem;
+    border: 1px solid color-mix(in srgb, var(--card-accent, var(--stellar)) 30%, transparent);
+    background: color-mix(in srgb, var(--card-accent, var(--stellar)) 8%, transparent);
+    color: var(--card-accent, var(--stellar));
+}
+.project-card:hover .proj-cta { background: color-mix(in srgb, var(--card-accent, var(--stellar)) 16%, transparent); box-shadow: 0 8px 20px -8px color-mix(in srgb, var(--card-accent, var(--stellar)) 60%, transparent); }
+.proj-ghlink { width: 38px; height: 38px; }
+.proj-ghlink:hover { background: linear-gradient(135deg, var(--card-accent, var(--stellar)), var(--nebula)); }
+
+/* ============================================================
+   PROJECT MODAL — cinematic case-study card
+   ============================================================ */
+#project-modal .modal-panel { box-shadow: 0 50px 120px -30px rgba(0,0,0,0.7), 0 0 0 1px rgba(139,92,246,0.15); }
+.modal-hero { padding: 2.2rem 2rem 1.6rem; overflow: hidden; }
+.modal-hero::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 0; opacity: 0.5;
+    background: radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,0.5), transparent), radial-gradient(1px 1px at 70% 60%, rgba(255,255,255,0.4), transparent), radial-gradient(1px 1px at 45% 80%, rgba(255,255,255,0.35), transparent), radial-gradient(1px 1px at 85% 25%, rgba(255,255,255,0.4), transparent);
+}
+.modal-hero > * { position: relative; z-index: 1; }
+.modal-hero .modal-hero-glow { opacity: 0.55; filter: blur(60px); }
+#modal-title {
+    background: linear-gradient(110deg, #ffffff 0%, #c4b5fd 35%, var(--stellar) 65%, var(--nebula) 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    letter-spacing: -0.02em; filter: drop-shadow(0 2px 18px rgba(139,92,246,0.25));
+}
+html:not(.dark) #modal-title {
+    background: linear-gradient(110deg, #0b0a1a 0%, var(--stellar) 60%, var(--nebula) 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    filter: none;
+}
+.modal-section-title { font-size: 10.5px; letter-spacing: 0.14em; }
+.modal-section-title::before { height: 2px; width: 16px; box-shadow: 0 0 8px var(--stellar); }
+.modal-decision { padding: 0.55rem 0.7rem; border-radius: 0.6rem; transition: background 0.25s ease; }
+.modal-decision:hover { background: rgba(139,92,246,0.06); }
+.impact-cell { position: relative; overflow: hidden; transition: transform 0.3s ease, border-color 0.3s ease; }
+.impact-cell:hover { transform: translateY(-3px); border-color: rgba(139,92,246,0.35); }
+.impact-metric { font-size: 1.7rem; filter: drop-shadow(0 2px 12px rgba(139,92,246,0.3)); }
+.arch-diagram { box-shadow: inset 0 0 40px rgba(139,92,246,0.05); }
+.modal-actions { padding-top: 0.5rem; border-top: 1px solid rgba(0,0,0,0.05); margin-top: 1.75rem; }
+html.dark .modal-actions { border-top: 1px solid rgba(255,255,255,0.06); }
+.modal-btn { padding: 0.85rem 1.4rem; font-size: 11.5px; }
+.modal-btn.primary { box-shadow: 0 12px 30px -8px rgba(139,92,246,0.5); position: relative; overflow: hidden; }
+.modal-btn.primary::after {
+    content: ""; position: absolute; top: 0; left: -60%; width: 40%; height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent); transform: skewX(-20deg); transition: left 0.5s ease;
+}
+.modal-btn.primary:hover::after { left: 130%; }
+.modal-btn i { font-size: 0.95em; }
 
 /* ============ ACCESSIBILITY ============ */
 @media (prefers-reduced-motion: reduce) {
